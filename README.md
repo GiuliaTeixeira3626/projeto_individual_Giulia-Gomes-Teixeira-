@@ -1,7 +1,7 @@
-#Projeto Individual - Giulia Gomes Teixeira#
-*Tema: Clube de Corrida e Musculação para pessoas portadoras da Síndrome de Down*
+# Projeto Individual - Giulia Gomes Teixeira
+## Tema: Clube de Corrida e Musculação para pessoas portadoras da Síndrome de Down
 
-*Contextualização do Projeto:*
+**Contextualização do Projeto:**
 
 A Síndrome de Down, condição genética caracterizada pela trissomia do cromossomo 21, apresenta particularidades fisiológicas que demandam uma atenção específica, como a hipotonia muscular (diminuição do tônus, firmeza muscular em repouso) e a frouxidão ligamentar (condição em que os ligamentos são mais elásticos, permitindo amplitude excessiva de movimento nas articulações). Historicamente, essas características foram interpretadas como limitações que justificavam o afastamento desses indivíduos de práticas esportivas mais intensas. No entanto, o cenário atual da saúde demonstra que o sedentarismo acentua riscos já inerentes à síndrome, como a tendência à obesidade, ao hipotireoidismo e a complicações cardiovasculares. Nesse panorama, a musculação e a corrida deixam de ser apenas atividades recreativas e passam a ser ferramentas essenciais de desenvolvimento, capazes de fortalecer a estrutura articular, melhorar a postura e aumentar a capacidade funcional. 
 
