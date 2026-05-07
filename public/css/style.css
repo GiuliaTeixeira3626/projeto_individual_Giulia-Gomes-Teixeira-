@@ -39,18 +39,19 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
 }
 
 .logo img {
-    width: 40px; 
-    height: 40px;
+    width: 60px; 
+    height: 60px;
     border-radius: 50%;
     background-color: #1a2e1a;
     border: 3px solid #a3f452; 
     width: 60px;
     height: 60px;
     margin: 0 auto 20px;
+    margin-top: 10px;
     overflow: hidden; /* corta excedentes */ 
 }
 
@@ -132,6 +133,8 @@ body {
 }
 
 .botao_cadastro {
+    text-decoration: none;
+    color: #000000;
     background: #a3f452;
     border: none;
     padding: 15px 40px;
