@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário - Clube T21 </title>
+    <link rel="stylesheet" href="./css/css_site/style(questionario).css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="barra">
+        <div class="header-content">
+            <div class="logo">
+                <img src="./assets/assets_site/imgs/logo.jpg" alt="Logo Clube T21">
+                <div class="logo-text">
+                    <strong>Clube T21</strong>
+                    <span>Esporte Inclusivo</span>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="index(site).html">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#comunidade">Comunidade</a></li>
+                    <li><a href="#fale-conosco">Contato</a></li>
+                </ul>
+            </nav>
+    </header>
+
+    </head>
+    <main class="container">
+        <section class="welcome-section">
+            <div class="welcome-text">
+                <h2>Questionário de <span class="green">Avaliação</span></h2>
+                <p>Ajude-nos a criar o melhor plano de treino para você</p>
+            </div>
+        </section>
+
+        <div id="quiz-container">
+            <div class="progress-bar">
+                <div id="progress"></div>
+            </div>
+            <div id="question-content">
+                <h2 id="question-text">Carregando pergunta...</h2>
+                <div id="options" class="options-container"></div>
+            </div>
+            <button id="next-btn" onclick="nextQuestion()">Próxima Pergunta</button>
+        </div>
+
+        <script>
+            const questions = [
+                {
+                    q: "Qual sua classificação atual de saúde para atividades de impacto?",
+                    options: ["Restrição total (médico não liberou impacto)", "Restrição parcial (liberado com supervisão)", "Sem restrições (liberação médica total)"]
+                },
+                {
+                    q: "Quantos minutos de atividade física contínua você consegue realizar hoje?",
+                    options: ["Menos de 10 min", "De 10 a 20 min", "De 20 a 40 min", "Mais de 40 min"]
+                },
+                {
+                    q: "Qual o foco principal do seu plano de 12 semanas?",
+                    options: ["Autonomia motora e força", "Condicionamento cardiovascular (Corrida)", "Composição corporal (Emagrecimento/Hipertrofia)", "Socialização e bem-estar mental"]
+                },
+                {
+                    q: "Em uma escala de 1 a 5, quão cansativo costuma ser um exercício para você?",
+                    options: ["1", "2", "3", "4", "5"]
+                },
+                {
+                    q: "Qual grupo muscular você sente que precisa de mais atenção?",
+                    options: ["Membros Inferiores (Pernas e equilíbrio)", "Membros Superiores (Braços e tronco)", "Core (Abdômen e postura)"]
+                },
+                {
+                    q: "Quantos dias por semana você se compromete a treinar no Clube T21?",
+                    options: ["1", "2", "3", "4", "5+"]
+                },
+                {
+                    q: "Qual o método de instrução mais eficaz para sua aprendizagem?",
+                    options: ["Demonstração Visual", "Comando Verbal direto", "Apoio Físico (ajuste de postura)", "Suporte por vídeo/app"]
+                },
+                {
+                    q: "Como você descreve sua caminhada/corrida atual?",
+                    options: ["Caminhada lenta/estacionária", "Caminhada vigorosa", "Trote intercalado com caminhada", "Corrida contínua"]
+                },
+                {
+                    q: "Como você avalia sua ingestão de água durante o exercício?",
+                    options: ["Preciso de lembretes constantes", "Bebo apenas quando sinto sede", "Me hidrato regularmente por conta própria"]
+                },
+                {
+                    q: "O que define o sucesso do seu treino ao final do mês?",
+                    options: ["Completar todos os treinos previstos", "Aumento de carga na musculação", "Melhora no tempo de corrida", "Sentir-se mais disposto no dia a dia"]
+                }
+            ];
+
+            let currentQuestion = 0;
+
+            function loadQuestion() {
+                const qData = questions[currentQuestion];
+                document.getElementById("question-text").innerText = qData.q;
+                const optionsDiv = document.getElementById("options");
+                optionsDiv.innerHTML = "";
+
+                qData.options.forEach(opt => {
+                    const btn = document.createElement("button");
+                    btn.className = "option-btn";
+                    btn.innerText = opt;
+                    btn.onclick = () => selectOption(btn);
+                    optionsDiv.appendChild(btn);
+                });
+
+                document.getElementById("progress").style.width = ((currentQuestion + 1) / questions.length * 100) + "%";
+                document.getElementById("next-btn").style.display = "none";
+            }
+
+            function selectOption(btn) {
+                const all = document.querySelectorAll(".option-btn");
+                all.forEach(b => b.classList.remove("selected"));
+                btn.classList.add("selected");
+                document.getElementById("next-btn").style.display = "inline-block";
+            }
+
+            function nextQuestion() {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    loadQuestion();
+                } else {
+                    document.getElementById("quiz-container").innerHTML = "<h2>Parabéns! Cadastro concluído com sucesso! Vamos treinar?</h2>";
+                }
+            }
+
+            loadQuestion();
+        </script>
+
+</body>
+
+</html>
