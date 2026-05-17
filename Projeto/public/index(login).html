@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Clube T21</title>
     <link href="./css/css_site/style(login).css" rel="stylesheet">
+    <script src="./js/sessao.js"></script>
 </head>
 
 <body>
-    <header class="barra">
+<header class="barra">
         <div class="header-content">
             <div class="logo">
                 <img src="./assets/assets_site/imgs/logo.jpg" alt="Logo Clube T21">
@@ -18,14 +19,21 @@
                     <span>Esporte Inclusivo</span>
                 </div>
             </div>
-            <nav class="nav-principal">
-                <div class="nav-right">
-                    <a href="index(site).html" class="btn-voltar">Volte a Tela Inicial</a>
-                </div>
 
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#comunidade">Comunidade</a></li>
+                    <li><a href="index.html#fale-conosco">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-right">
+                <a href="index.html" class="botao_login">Volte a Tela Inicial</a>
+            </div>
         </div>
     </header>
-
     <main class="login-main">
         <div class="login-box">
             <div class="login-header">
@@ -36,15 +44,15 @@
             <form>
                 <div class="input-group">
                     <label>E-mail</label>
-                    <input type="email" placeholder="Ex: nome@email.com" required>
+                    <input type="email" placeholder="Ex: nome@email.com" id="email_input">
                 </div>
 
                 <div class="input-group">
                     <label>Senha</label>
-                    <input type="password" placeholder="Sua senha" required>
+                    <input type="password" placeholder="Sua senha" id="senha_input">
                 </div>
 
-                 <button type="sub" class="btn-entrar" onclick="Registrar()">Entrar</button>
+                <button type="button" class="btn-entrar" onclick="entrar()">Entrar</button>
             </form>
 
             <p class="create-account">Ainda não faz parte? <a href="index(cadastro).html">Inscreva-se agora</a></p>
@@ -53,3 +61,86 @@
 </body>
 
 </html>
+
+<script>
+    // Variável global de controle de tentativas (criada no escopo do script)
+    let tentativas = 3;
+
+    function entrar() {
+        // Recuperando os valores inseridos pelo usuário nos campos de input
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            alert("Por favor, preencha todos os campos!");
+            return false;
+        } else if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1) {
+            alert("E-mail inválido! Deve conter '@' e '.'");
+            return false;
+        } else if (senhaVar.length < 8) {
+            alert("A senha deve conter pelo menos 8 caracteres!");
+            return false;
+        } else if (tentativas <= 0) {
+            alert("ACESSO BLOQUEADO POR SEGURANÇA!");
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!");
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    // Restaura as tentativas em caso de sucesso
+                    tentativas = 3;
+                    alert("Login realizado com sucesso! Entrando...");
+
+                    setTimeout(function () {
+                        window.location = "index(perfil).html";
+                    }, 1000);
+                });
+
+            } else {
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                // Reduz o número de tentativas se o servidor rejeitar a autenticação (senha ou e-mail incorretos)
+                tentativas--;
+
+                if (tentativas > 0) {
+                    alert(`Credenciais incorretas! Restam ${tentativas} tentativas.`);
+                } else {
+                    alert("Acesso bloqueado por segurança devido ao excesso de erros!");
+                }
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+            alert("Erro na comunicação com o servidor.");
+        });
+
+        return false;
+    }
+</script>

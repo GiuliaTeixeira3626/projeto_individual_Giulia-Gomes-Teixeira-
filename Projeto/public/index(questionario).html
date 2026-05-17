@@ -6,29 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionário - Clube T21 </title>
     <link rel="stylesheet" href="./css/css_site/style(questionario).css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="./js/sessao.js"></script>
 </head>
 
 <body>
-    <header class="barra">
-        <div class="header-content">
-            <div class="logo">
-                <img src="./assets/assets_site/imgs/logo.jpg" alt="Logo Clube T21">
-                <div class="logo-text">
-                    <strong>Clube T21</strong>
-                    <span>Esporte Inclusivo</span>
-                </div>
+<header class="barra">
+    <div class="header-content">
+        <div class="logo">
+            <img src="./assets/assets_site/imgs/logo.jpg" alt="Logo Clube T21">
+            <div class="logo-text">
+                <strong>Clube T21</strong>
+                <span>Esporte Inclusivo</span>
             </div>
+        </div>
 
-            <nav>
-                <ul>
-                    <li><a href="index(site).html">Início</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#comunidade">Comunidade</a></li>
-                    <li><a href="#fale-conosco">Contato</a></li>
-                </ul>
-            </nav>
-    </header>
+        <nav>
+            <ul>
+                <li><a href="index(site).html">Início</a></li>
+                <li><a href="index(site).html#sobre">Sobre</a></li>
+                <li><a href="index(site).html#comunidade">Comunidade</a></li>
+                <li><a href="index(site).html#fale-conosco">Contato</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-right">
+            <a href="index(perfil).html" class="botao_login">Retorne a Área Exclusiva</a>
+        </div>
+    </div>
+</header>
 
     </head>
     <main class="container">
@@ -61,7 +66,7 @@
                     options: ["Menos de 10 min", "De 10 a 20 min", "De 20 a 40 min", "Mais de 40 min"]
                 },
                 {
-                    q: "Qual o foco principal do seu plano de 12 semanas?",
+                    q: "Qual o foco principal durante o treinamento?",
                     options: ["Autonomia motora e força", "Condicionamento cardiovascular (Corrida)", "Composição corporal (Emagrecimento/Hipertrofia)", "Socialização e bem-estar mental"]
                 },
                 {

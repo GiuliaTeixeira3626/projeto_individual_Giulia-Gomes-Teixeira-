@@ -21,61 +21,85 @@ body {
     padding: 25px 0;
     position: fixed;
     top: 0;
+    left: 0;
     z-index: 1000;
 }
 
 .header-content {
-    width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
 }
 
 .logo img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    background-color: #1a2e1a;
     border: 3px solid #a3f452;
+    object-fit: cover;
+    display: block;
 }
 
-.logo-text strong { display: block; font-size: 1.1rem; line-height: 1.1; }
-.logo-text span { color: #a3f452; font-size: 0.75rem; }
+.logo-text strong {
+    display: block;
+    font-size: 1.1rem;
+    line-height: 1;
+}
 
+.logo-text span {
+    color: #a3f452;
+    font-size: 0.75rem;
+}
 
-.nav-principal ul {
+/* Menu Navegação */
+nav ul {
     display: flex;
     list-style: none;
+    gap: 30px;
     margin: 0;
     padding: 0;
 }
 
-.nav-principal ul li a {
+nav ul li a {
     text-decoration: none;
     color: #ffffff;
     font-weight: 500;
-    font-size: 1.1rem;
-    transition: 0.3s;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
 }
 
-.nav-principal ul li a:hover {
+nav ul li a:hover {
     color: #a3f452;
 }
 
-.nav-right {
-    flex: 1; /* Ocupa 1 parte (igual ao logo), criando simetria */
-    display: flex;
-    justify-content: flex-end; /* Empurra o botão para a ponta direita */
+.botao_login {
+    width: max-content;
+    min-width: 160px;
+    text-align: center;
+    padding: 12px 24px;
+    background-color: #a3f452;
+    color: black;
+    border: none;
+    border-radius: 40px;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
 }
 
 .login-main {
-    margin-top: 180px; 
+    margin-top: 180px;
 }
 
 .login-box {
@@ -84,7 +108,7 @@ body {
     padding: 50px;
     border-radius: 20px;
     border: 1.5px solid #1a2e1a;
-    box-shadow: 0 0 30px rgba(163, 244, 82, 0.15); 
+    box-shadow: 0 0 30px rgba(163, 244, 82, 0.15);
     text-align: center;
 }
 
@@ -119,7 +143,7 @@ input {
     width: 100%;
     padding: 15px;
     background-color: #1a2e1a;
-    border: 1.5px solid #ffffff; 
+    border: 1.5px solid #ffffff;
     border-radius: 10px;
     color: white;
     font-family: 'Inter', sans-serif;
@@ -174,18 +198,18 @@ input:focus {
 }
 
 .btn-voltar {
-    background-color: #ffffff; 
-    color: #000000;        
+    background-color: #ffffff;
+    color: #000000;
     padding: 10px 20px;
-    border-radius: 30px;       
+    border-radius: 30px;
     font-weight: 700;
-    text-decoration: none;     
+    text-decoration: none;
     font-size: 0.9rem;
     transition: 0.3s;
     display: inline-block;
 }
 
 .btn-voltar:hover {
-    background-color:#a3f452;
-    transform: translateY(-2px); 
+    background-color: #a3f452;
+    transform: translateY(-2px);
 }

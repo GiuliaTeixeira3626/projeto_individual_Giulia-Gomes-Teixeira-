@@ -2,108 +2,232 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - Clube T21</title>
-    <link rel="stylesheet" href="./css/css_site/style(cadastro).css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Clube T21</title>
+  <link rel="stylesheet" href="./css/css_site/style(cadastro).css">
+  <script src="./js/sessao.js"></script>
 </head>
 
 <body>
-    <header class="barra">
-        <div class="header-content">
-            <div class="logo">
-                <img src="./assets/assets_site/imgs/logo.jpg" alt="Logo Clube T21">
-                <div class="logo-text">
-                    <strong>Clube T21</strong>
-                    <span>Esporte Inclusivo</span>
-                </div>
-            </div>
-
-            <nav>
-                <ul>
-                    <li><a href="index(site).html">Início</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#comunidade">Comunidade</a></li>
-                    <li><a href="#fale-conosco">Contato</a></li>
-                </ul>
-            </nav>
-
-            <a href="index(login).html" class="botao_login">Acessar Área Exclusiva</a>
+  <header class="barra">
+    <div class="header-content">
+      <div class="logo">
+        <img src="./assets/assets_site/imgs/logo.jpg" alt="Logo Clube T21">
+        <div class="logo-text">
+          <strong>Clube T21</strong>
+          <span>Esporte Inclusivo</span>
         </div>
-    </header>
+      </div>
 
-    <div class="cadastro-header">
-        <h1>Faça sua <span>Inscrição</span></h1>
-        <p>Preencha o formulário abaixo para começar sua jornada conosco</p>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#comunidade">Comunidade</a></li>
+          <li><a href="index.html#fale-conosco">Contato</a></li>
+        </ul>
+      </nav>
+      <a href="index(login).html" class="botao_login">Acessar Área Exclusiva</a>
     </div>
+  </header>
 
-    <main class="form-box">
-        <form>
-            <h2 class="secao-titulo">Dados Pessoais</h2>
-            <div class="form-grid">
-                <div class="input-group">
-                    <label>Nome Completo *</label>
-                    <input type="text" placeholder="Digite seu nome">
-                </div>
-                <div class="input-group">
-                    <label>Data de Nascimento *</label>
-                    <input type="date">
-                </div>
-                <div class="input-group">
-                    <label>E-mail *</label>
-                    <input type="email" id="ipt_User" placeholder="seu@email.com">
-                </div>
-                <div class="input-group">
-                    <label>Telefone *</label>
-                    <input type="tel" placeholder="(11) 99999-9999">
-                </div>
-                <div class="input-group full-width">
-                    <label>Endereço *</label>
-                    <input type="text" placeholder="Rua, número, bairro, cidade">
-                </div>
-            </div>
+  <div class="cadastro-header">
+    <h1>Faça sua <span>Inscrição</span></h1>
+    <p>Preencha o formulário abaixo para começar sua jornada conosco</p>
+  </div>
 
-            <h2 class="secao-titulo">Dados do Responsável</h2>
-            <div class="form-grid">
-                <div class="input-group">
-                    <label>Nome do Responsável *</label>
-                    <input type="text" placeholder="Nome completo">
-                </div>
-                <div class="input-group">
-                    <label>Telefone do Responsável *</label>
-                    <input type="tel" placeholder="(11) 99999-9999">
-                </div>
-            </div>
+  <main class="form-box">
+    <form>
+      <h2 class="secao-titulo">Dados Pessoais</h2>
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Nome Completo *</label>
+          <input type="text" placeholder="Digite seu nome" id="nome_input">
+        </div>
+        <div class="input-group">
+          <label>Data de Nascimento *</label>
+          <input type="date" id="dtnasc_input">
+        </div>
+        <div class="input-group">
+          <label>E-mail *</label>
+          <input type="email" id="email_input" placeholder="seu@email.com">
+        </div>
+        <div class="input-group">
+          <label>Telefone *</label>
+          <input type="tel" placeholder="(11) 99999-9999" id="tel_input">
+        </div>
+        <div class="input-group full-width">
+          <label>Endereço *</label>
+          <input type="text" placeholder="Rua, número, bairro, cidade" id="end_input">
+        </div>
+      </div>
 
-            <h2 class="secao-titulo">Informações de Saúde</h2>
-            <div class="input-group full-width">
-                <label>Condições de Saúde e Observações</label>
-                <textarea
-                    placeholder="Informe qualquer condição relevante, limitações físicas ou medicamentos em uso"></textarea>
-            </div>
+      <h2 class="secao-titulo">Dados do Responsável</h2>
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Nome do Responsável *</label>
+          <input type="text" placeholder="Nome completo" id="nomeR_input">
+        </div>
+        <div class="input-group">
+          <label>Telefone do Responsável *</label>
+          <input type="tel" placeholder="(11) 99999-9999" id="telR_input">
+        </div>
+      </div>
 
-            <h2 class="secao-titulo">Crie sua Senha</h2>
-            <div class="form-grid">
-                <div class="input-group">
-                    <label>Senha *</label>
-                    <input type="password" id="ipt_Senha_User"  placeholder="Mínimo 8 caracteres">
-                </div>
-                <div class="input-group">
-                    <label>Confirmar Senha *</label>
-                    <input type="password" id="ipt_Confirmar_Senha" placeholder="Digite a senha novamente">
-                </div>
-            </div>
+      <h2 class="secao-titulo">Informações de Saúde</h2>
+      <div class="input-group full-width">
+        <label>Condições de Saúde e Observações</label>
+        <textarea placeholder="Informe qualquer condição relevante, limitações físicas ou medicamentos em uso"
+          id="cond_input"></textarea>
+      </div>
 
-<div id="div_msg"></div>
+      <h2 class="secao-titulo">Crie sua Senha</h2>
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Senha *</label>
+          <input type="password" id="senha_input" placeholder="Mínimo 8 caracteres">
+        </div>
+        <div class="input-group">
+          <label>Confirmar Senha *</label>
+          <input type="password" id="confirmacao_senha_input" placeholder="Digite a senha novamente">
+        </div>
+      </div>
 
-            <button type="button" class="btn-enviar-cadastro" onclick="Registrar()">Finalizar Inscrição</button>
+      <div id="div_msg"></div>
 
-            <p style="text-align: center; color: #9ca3af; font-size: 0.8rem; margin-top: 15px;">* Campos obrigatórios
-            </p>
+      <button type="button" class="btn-enviar-cadastro" onclick="cadastrar()">Finalizar Inscrição</button>
 
-            <a href="index(site).html" class="voltar-link">Voltar para a página inicial</a>
-        </form>
-    </main>
+      <p style="text-align: center; color: #9ca3af; font-size: 0.8rem; margin-top: 15px;">* Campos obrigatórios</p>
+
+      <a href="index.html" class="voltar-link">Voltar para a página inicial</a>
+    </form>
+  </main>
 </body>
+
+<script>
+  function cadastrar() {
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var dataVar = dtnasc_input.value;
+    var emailVar = email_input.value;
+    var telefoneVar = tel_input.value;
+    var enderecoVar = end_input.value;
+    var nomeRVar = nomeR_input.value;
+    var telefoneRVar = telR_input.value;
+    var condicaoVar = cond_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+    if (
+      nomeVar == "" ||
+      dataVar == "" ||
+      emailVar == "" ||
+      telefoneVar == "" ||
+      enderecoVar == "" ||
+      nomeRVar == "" ||
+      telefoneRVar == "" ||
+      condicaoVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      alert("Por favor, preencha todos os campos obrigatórios!");
+      return false;
+    }
+    else if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1) {
+      alert("E-mail inválido! Deve conter '@' e '.'");
+      return false;
+    }
+    else if (senhaVar.length < 8) {
+      alert("A senha deve ter pelo menos 8 caracteres!");
+      return false;
+    }
+    else if (senhaVar != confirmacaoSenhaVar) {
+      alert("As senhas não coincidem!");
+      return false;
+    }
+    else {
+      //setInterval(sumirMensagem, 5000);
+
+
+      // Verificando se o código de ativação é de alguma empresa cadastrada
+      /*for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+        if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+          idEmpresaVincular = listaEmpresasCadastradas[i].id
+          console.log("Código de ativação válido.");
+          break;
+        } else {
+          cardErro.style.display = "block";
+          mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+          finalizarAguardar();
+        }*/
+      //}
+
+      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          dataServer: dataVar,
+          emailServer: emailVar,
+          telefoneServer: telefoneVar,
+          telefoneRServer: telefoneRVar,
+          condicaoServer: condicaoVar,
+          senhaServer: senhaVar
+          //idEmpresaVincularServer: idEmpresaVincular
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+            setTimeout(() => {
+              window.location = "index(login).html";
+            }, 2000);
+
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          alert("Erro no servidor ao tentar cadastrar.");
+        });
+
+      return false;
+    }
+  }
+  // Listando empresas cadastradas 
+  /*function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }*/
+</script>
 
 </html>

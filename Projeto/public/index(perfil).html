@@ -6,6 +6,7 @@
     <title>Perfil - Clube T21</title>
     <link rel="stylesheet" href="./css/css_site/style(perfil).css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="./js/sessao.js"></script>
 </head>
 <body>
     <header class="barra">
@@ -20,10 +21,10 @@
 
             <nav>
                 <ul>
-                    <li><a href="index(site).html">Início</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#comunidade">Comunidade</a></li>
-                    <li><a href="#fale-conosco">Contato</a></li>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#comunidade">Comunidade</a></li>
+                    <li><a href="index.html#fale-conosco">Contato</a></li>
                 </ul>
             </nav>
     </header>
@@ -60,22 +61,15 @@
                 <h2>Questionário de Avaliação Inicial</h2>
                 <p>Complete o questionário para que possamos criar um plano de treino personalizado e adaptado às suas necessidades.</p>
             </div>
-            <button class="btn-iniciar">Iniciar Questionário</button>
+            <a href="index(questionario).html" class="btn-iniciar">Iniciar Questionário</a>
         </section>
 
-        <section class="card profile-card">
-            <h2>Informações da Conta</h2>
-            <div class="perfil-detalhes">
-                <div class="detalhes">
-                    <label>Nome Completo</label>
-                    <p>João Silva</p>
-                </div>
-                <div class="detalhes">
-                    <label>E-mail</label>
-                    <p>joao.silva@email.com</p>
-                </div>
+        <section class="card dashboard-card">
+            <div class="dashboard-info">
+                <h2>Análise de Perfil</h2>
+                <p>Consulte os gráficos do seu questionário inicial, metas de treino e restrições de saúde.</p>
             </div>
-            <button class="botao-editar">Editar Perfil</button>
+            <a href="index(dashboard).html" class="btn-acessar">Acesse a sua Dashboard</a>
         </section>
     </main>
 

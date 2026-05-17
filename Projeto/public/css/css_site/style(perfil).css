@@ -139,8 +139,21 @@ nav ul li a:hover {
     margin-top: 10px;
 }
 
-
 .questionario-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -156,16 +169,40 @@ nav ul li a:hover {
     max-width: 500px;
 }
 
-.btn-iniciar {
-    background-color: #a3f452;
-    padding: 15px 30px;
-    border-radius: 25px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
+.dashboard-info p {
+    color: #9ca3af;
+    max-width: 500px;
 }
 
-.btn-inir:hover {
+.btn-iniciar {
+    background-color: #a3f452;
+    color: #000;
+    padding: 10px 22px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-iniciar:hover {
+    background-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(57, 255, 20, 0.3);
+}
+
+.btn-acessar {
+    background-color: #a3f452;
+    color: #000;
+    padding: 10px 22px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-acessar:hover {
     background-color: white;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(57, 255, 20, 0.3);
