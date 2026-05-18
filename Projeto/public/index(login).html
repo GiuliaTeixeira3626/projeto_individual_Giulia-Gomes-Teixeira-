@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Clube T21</title>
     <link href="./css/css_site/style(login).css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="./js/sessao.js"></script>
 </head>
 
 <body>
-<header class="barra">
+    <header class="barra">
         <div class="header-content">
             <div class="logo">
                 <img src="./assets/assets_site/imgs/logo.jpg" alt="Logo Clube T21">
@@ -74,15 +75,6 @@
         if (emailVar == "" || senhaVar == "") {
             alert("Por favor, preencha todos os campos!");
             return false;
-        } else if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1) {
-            alert("E-mail inválido! Deve conter '@' e '.'");
-            return false;
-        } else if (senhaVar.length < 8) {
-            alert("A senha deve conter pelo menos 8 caracteres!");
-            return false;
-        } else if (tentativas <= 0) {
-            alert("ACESSO BLOQUEADO POR SEGURANÇA!");
-            return false;
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -95,7 +87,7 @@
             },
             body: JSON.stringify({
                 emailServer: emailVar,
-                senhaServer: senhaVar
+                senhaServer: senhaVar,
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!");
@@ -109,6 +101,7 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.DATA_CADASTRO = json.data_cadastro;
 
                     // Restaura as tentativas em caso de sucesso
                     tentativas = 3;

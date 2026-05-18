@@ -135,15 +135,15 @@
       alert("Por favor, preencha todos os campos obrigatórios!");
       return false;
     }
-    else if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1) {
+    if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1) {
       alert("E-mail inválido! Deve conter '@' e '.'");
       return false;
     }
-    else if (senhaVar.length < 8) {
+    if (senhaVar.length < 8) {
       alert("A senha deve ter pelo menos 8 caracteres!");
       return false;
     }
-    else if (senhaVar != confirmacaoSenhaVar) {
+      if (senhaVar != confirmacaoSenhaVar) {
       alert("As senhas não coincidem!");
       return false;
     }
@@ -177,6 +177,8 @@
           dataServer: dataVar,
           emailServer: emailVar,
           telefoneServer: telefoneVar,
+          enderecoServer: enderecoVar,
+          nomeRServer: nomeRVar,
           telefoneRServer: telefoneRVar,
           condicaoServer: condicaoVar,
           senhaServer: senhaVar
