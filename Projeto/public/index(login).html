@@ -122,6 +122,10 @@
                     alert(`Credenciais incorretas! Restam ${tentativas} tentativas.`);
                 } else {
                     alert("Acesso bloqueado por segurança devido ao excesso de erros!");
+
+                    setTimeout(function () {
+                        window.location = "index.html";
+                    }, 1000);
                 }
 
                 resposta.text().then(texto => {

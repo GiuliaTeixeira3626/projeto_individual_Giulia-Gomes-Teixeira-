@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Questionário - Clube T21</title>
+
+    <link rel="stylesheet" href="./css/css_site/style(questionario).css">
+
+    <script src="./js/sessao.js"></script>
+</head>
+
+<body>
+
+    <header class="barra">
+
+        <div class="header-content">
+
+            <div class="logo">
+                <img src="./assets/assets_site/imgs/logo.jpg" alt="Logo Clube T21">
+
+                <div class="logo-text">
+                    <strong>Clube T21</strong>
+                    <span>Esporte Inclusivo</span>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="index(site).html">Início</a></li>
+                    <li><a href="index(site).html#sobre">Sobre</a></li>
+                    <li><a href="index(site).html#comunidade">Comunidade</a></li>
+                    <li><a href="index(site).html#fale-conosco">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-right">
+                <a href="index(perfil).html" class="botao_login">
+                    Retorne a Área Exclusiva
+                </a>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="container">
+
+        <section class="welcome-section">
+
+            <div class="welcome-text">
+
+                <h2>
+                    Questionário de <span class="green">Avaliação</span>
+                </h2>
+
+                <p>
+                    Ajude-nos a criar o melhor plano de treino para você
+                </p>
+
+            </div>
+
+        </section>
+
+        <div id="quiz-container">
+
+            <div class="progress-bar">
+                <div id="progress"></div>
+            </div>
+
+            <div id="question-content">
+
+                <h2 id="question-text">
+                    Carregando pergunta...
+                </h2>
+
+                <div id="options" class="options-container"></div>
+
+            </div>
+
+            <button id="next-btn" onclick="nextQuestion()">
+                Próxima Pergunta
+            </button>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        const questions = [
+
+            {
+                id_pergunta: 1,
+                q: "Qual sua classificação atual de saúde para atividades de impacto?",
+                options: [
+                    { texto: "Restrição total (médico não liberou impacto)", id_alternativa: 1 },
+                    { texto: "Restrição parcial (liberado com supervisão)", id_alternativa: 2 },
+                    { texto: "Sem restrições (liberação médica total)", id_alternativa: 3 }
+                ]
+            },
+
+            {
+                id_pergunta: 2,
+                q: "Quantos minutos de atividade física contínua você consegue realizar hoje?",
+                options: [
+                    { texto: "Menos de 10 min", id_alternativa: 4 },
+                    { texto: "De 10 a 20 min", id_alternativa: 5 },
+                    { texto: "De 20 a 40 min", id_alternativa: 6 },
+                    { texto: "Mais de 40 min", id_alternativa: 7 }
+                ]
+            },
+
+            {
+                id_pergunta: 3,
+                q: "Qual o foco principal durante o treinamento?",
+                options: [
+                    { texto: "Autonomia motora e força", id_alternativa: 8 },
+                    { texto: "Condicionamento cardiovascular (Corrida)", id_alternativa: 9 },
+                    { texto: "Composição corporal (Emagrecimento/Hipertrofia)", id_alternativa: 10 },
+                    { texto: "Socialização e bem-estar mental", id_alternativa: 11 }
+                ]
+            },
+
+            {
+                id_pergunta: 4,
+                q: "Em uma escala de 1 a 5, quão cansativo costuma ser um exercício para você?",
+                options: [
+                    { texto: "1", id_alternativa: 12 },
+                    { texto: "2", id_alternativa: 13 },
+                    { texto: "3", id_alternativa: 14 },
+                    { texto: "4", id_alternativa: 15 },
+                    { texto: "5", id_alternativa: 16 }
+                ]
+            },
+
+            {
+                id_pergunta: 5,
+                q: "Qual grupo muscular você sente que precisa de mais atenção?",
+                options: [
+                    { texto: "Membros Inferiores (Pernas e equilíbrio)", id_alternativa: 17 },
+                    { texto: "Membros Superiores (Braços e tronco)", id_alternativa: 18 },
+                    { texto: "Core (Abdômen e postura)", id_alternativa: 19 }
+                ]
+            },
+
+            {
+                id_pergunta: 6,
+                q: "Quantos dias por semana você se compromete a treinar no Clube T21?",
+                options: [
+                    { texto: "1", id_alternativa: 20 },
+                    { texto: "2", id_alternativa: 21 },
+                    { texto: "3", id_alternativa: 22 },
+                    { texto: "4", id_alternativa: 23 },
+                    { texto: "5+", id_alternativa: 24 }
+                ]
+            },
+
+            {
+                id_pergunta: 7,
+                q: "Qual o método de instrução mais eficaz para sua aprendizagem?",
+                options: [
+                    { texto: "Demonstração Visual", id_alternativa: 25 },
+                    { texto: "Comando Verbal direto", id_alternativa: 26 },
+                    { texto: "Apoio Físico (ajuste de postura)", id_alternativa: 27 },
+                    { texto: "Suporte por vídeo/app", id_alternativa: 28 }
+                ]
+            },
+
+            {
+                id_pergunta: 8,
+                q: "Como você descreve sua caminhada/corrida atual?",
+                options: [
+                    { texto: "Caminhada lenta/estacionária", id_alternativa: 29 },
+                    { texto: "Caminhada vigorosa", id_alternativa: 30 },
+                    { texto: "Trote intercalado com caminhada", id_alternativa: 31 },
+                    { texto: "Corrida contínua", id_alternativa: 32 }
+                ]
+            },
+
+            {
+                id_pergunta: 9,
+                q: "Como você avalia sua ingestão de água durante o exercício?",
+                options: [
+                    { texto: "Preciso de lembretes constantes", id_alternativa: 33 },
+                    { texto: "Bebo apenas quando sinto sede", id_alternativa: 34 },
+                    { texto: "Me hidrato regularmente por conta própria", id_alternativa: 35 }
+                ]
+            },
+
+            {
+                id_pergunta: 10,
+                q: "O que define o sucesso do seu treino ao final do mês?",
+                options: [
+                    { texto: "Completar todos os treinos previstos", id_alternativa: 36 },
+                    { texto: "Aumento de carga na musculação", id_alternativa: 37 },
+                    { texto: "Melhora no tempo de corrida", id_alternativa: 38 },
+                    { texto: "Sentir-se mais disposto no dia a dia", id_alternativa: 39 }
+                ]
+            }
+
+        ];
+
+        let currentQuestion = 0;
+
+        let resposta = [];
+
+        function loadQuestion() {
+
+            const qData = questions[currentQuestion];
+
+            document.getElementById("question-text").innerText = qData.q;
+
+            const optionsDiv = document.getElementById("options");
+
+            optionsDiv.innerHTML = "";
+
+            qData.options.forEach(opt => {
+
+                const btn = document.createElement("button");
+
+                btn.className = "option-btn";
+
+                btn.innerText = opt.texto;
+
+                btn.onclick = () => selectOption(btn, opt.id_alternativa);
+
+                optionsDiv.appendChild(btn);
+
+            });
+
+            document.getElementById("progress").style.width =
+                ((currentQuestion + 1) / questions.length * 100) + "%";
+
+            document.getElementById("next-btn").style.display = "none";
+        }
+
+        function selectOption(btn, id_alternativa) {
+
+            const allButtons = document.querySelectorAll(".option-btn");
+
+            allButtons.forEach(button => {
+                button.classList.remove("selected");
+            });
+
+            btn.classList.add("selected");
+
+            resposta[currentQuestion] = {
+
+                fk_pergunta: questions[currentQuestion].id_pergunta,
+
+                fk_alternativa: id_alternativa
+
+            };
+
+            document.getElementById("next-btn").style.display = "inline-block";
+        }
+        function nextQuestion() {
+
+            if (!resposta[currentQuestion]) {
+                alert("Selecione uma alternativa!");
+                return;
+            }
+
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                const idUsuario = sessionStorage.ID_USUARIO;
+
+                const stringRespostasSql = resposta.map(item => {
+                    return `(${idUsuario}, ${item.fk_pergunta}, ${item.fk_alternativa})`;
+                }).join(", ");
+
+                fetch("quiz/salvarRespostas", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        id: idUsuario,
+                        resposta: stringRespostasSql
+                    })
+                })
+                    .then(function (resposta) {
+                        console.log(resposta);
+
+                        if (resposta.ok) {
+                            document.getElementById("quiz-container").innerHTML = `
+                    <h2>
+                        Parabéns! Questionário concluído com sucesso!
+                    </h2>
+                    <p>
+                        Suas respostas foram registradas.
+                    </p>
+                    <button onclick="window.location.href='./index(perfil).html'">
+                        Voltar para Área Exclusiva
+                    </button>
+                `;
+                        } else {
+                            alert("Erro ao salvar respostas.");
+                        }
+                    })
+                    .catch(function (erro) {
+                        console.log("Erro:", erro);
+                        alert("Erro ao conectar com o servidor.");
+                    });
+            }
+        }
+
+        loadQuestion();
+
+    </script>
+
+</body>
+
+</html>
