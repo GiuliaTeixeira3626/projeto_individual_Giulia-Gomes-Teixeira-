@@ -213,3 +213,26 @@ h2 {
     transform: translateY(-2px);    
     box-shadow: 0 6px 20px rgba(163, 244, 82, 0.4);
 }
+
+.btn-concluido {
+    background-color: #a3f452; 
+    color: #1a1a1a;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.btn-concluido:hover {
+    background-color: white;
+    transform: translateY(-2px); 
+}
+
+.btn-concluido:active {
+    transform: translateY(0);
+}
