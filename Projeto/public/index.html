@@ -36,7 +36,7 @@
         <section class="inicio">
             <div class="conteudo">
                 <p class="subtitle">Esporte Inclusivo</p>
-                <h1>Rompa barreiras através do <span>esporte</span></h1>
+                <h1>Rompa barreiras <br> através do <span>esporte</span></h1>
                 <p class="descricao">Musculação e corrida adaptada para atletas com Síndrome de Down.</p>
                 <a href="index(cadastro).html" class="botao_cadastro">Faça sua Inscrição</a>
             </div>
@@ -118,15 +118,15 @@
                     <div class="contato-container">
                         <form class="contato-form">
                             <div class="input-group">
-                                <input type="text" placeholder="Seu Nome">
+                                <input type="text" placeholder="Seu Nome" id="nome_input">
                             </div>
                             <div class="input-group">
-                                <input type="email" placeholder="Seu E-mail">
+                                <input type="email" placeholder="Seu E-mail" id="email_input">
                             </div>
                             <div class="input-group">
-                                <textarea placeholder="Como podemos ajudar?" rows="5"></textarea>
+                                <textarea placeholder="Como podemos ajudar?" id="mensagem_input" rows="5"></textarea>
                             </div>
-                            <button class="btn-enviar">Enviar Mensagem</button>
+                            <button type="button" class="btn-enviar" onclick="cadastrar()">Enviar Mensagem</button>
                         </form>
                     </div>
                     <div class="frase-original">© 2026 Clube T21. Todos os direitos reservados.</div>
@@ -138,5 +138,100 @@
 
     </main>
 </body>
+
+</html>
+<script>
+
+function cadastrar() {
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var mensagemVar = mensagem_input.value;
+
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      mensagemVar == ""
+    ) {
+      alert("Por favor, preencha todos os campos obrigatórios!");
+      return false;
+    }
+    if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1) {
+      alert("E-mail inválido! Deve conter '@' e '.'");
+      return false;
+    }
+    else {
+      //setInterval(sumirMensagem, 5000);
+
+
+      // Verificando se o código de ativação é de alguma empresa cadastrada
+      /*for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+        if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+          idEmpresaVincular = listaEmpresasCadastradas[i].id
+          console.log("Código de ativação válido.");
+          break;
+        } else {
+          cardErro.style.display = "block";
+          mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+          finalizarAguardar();
+        }*/
+      //}
+
+      // Enviando o valor da nova input
+      fetch("/fale_conosco/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          emailServer: emailVar,
+          mensagemServer: mensagemVar
+          
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            alert("Mensagem enviada com sucesso!");
+
+          } else {
+            throw "Houve um erro ao tentar enviar a sua mensagem!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          alert("Erro no servidor ao tentar enviar a sua mensagem.");
+        });
+
+      return false;
+    }
+  }
+  // Listando empresas cadastradas 
+  /*function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }*/
+</script>
 
 </html>
