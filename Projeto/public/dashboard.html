@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Clube T21</title>
+    
+    <link rel="stylesheet" href="/css/css_site/style(dashboard).css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/sessao.js"></script>
+</head>
+
+<body onload="inicializarDashboard()">
+    <header class="barra">
+        <div class="header-content">
+            
+            <div class="logo">
+                <img src="/assets/assets_site/imgs/logo.jpg" alt="Logo Clube T21">
+                <div class="logo-text">
+                    <strong>Clube T21</strong>
+                    <span>Esporte Inclusivo</span>
+                </div> 
+            </div> 
+
+            <div class="nav-right">
+                <a href="index(perfil).html" class="botao_login">Retorne a Área Exclusiva</a>
+            </div>
+
+        </div> 
+    </header>
+
+    <div class="dashboard-container">
+        
+        <div class="kpi-container">
+            <div class="card-kpi">
+                <h4>Condição de Saúde</h4>
+                <p id="kpi_saude" class="status-texto">Nenhuma</p>
+                <span>Atenção necessária</span>
+            </div>
+            
+            <div class="card-kpi">
+                <h4>Foco Principal</h4>
+                <p id="kpi_foco" class="status-texto">Geral</p>
+                <span>Objetivo do aluno</span>
+            </div>
+            
+            <div class="card-kpi">
+                <h4>Sucesso no Mês</h4>
+                <p id="kpi_sucesso" class="status-texto">0%</p>
+                <span>Desempenho final</span>
+            </div>
+        </div>
+
+        <div class="card-grafico">
+            <h3>Índice de Esforço Atual</h3>
+            <div class="canvas-container">
+                <canvas id="graficoEsforco"></canvas>
+            </div>
+            
+            <div class="bloco-legenda">
+                <p class="txt-explicativo">
+                    <strong>O que significa?</strong> Este gráfico monitora a intensidade média percebida durante as suas atividades físicas. 
+                </p>
+                <p class="txt-diretriz">
+                    <em>Como ler: Manter o esforço abaixo do limite ideal (4.0) garante um treino seguro. Se a barra ficar vermelha, significa que o ritmo está muito exaustivo.</em> 
+                </p>
+                <p id="p_alerta_esforco" class="alerta-esforco"></p>
+            </div>
+        </div>
+
+        <div class="card-grafico">
+            <h3>Meta de Treino Semanal (Minutos)</h3>
+            <div class="canvas-container">
+                <canvas id="graficoVolume"></canvas>
+            </div>
+            
+            <div class="bloco-legenda">
+                <p class="txt-explicativo">
+                    <strong>O que significa?</strong> Mede o tempo total que você planeja se exercitar na semana, baseado no questionário de triagem.
+                </p>
+                <p class="txt-diretriz">
+                    <em>Como ler: A meta é atingir ou superar os 150 minutos semanais recomendados pela Organização Mundial da Saúde (OMS) para uma vida saudável.</em>
+                </p>
+                <p id="p_legenda_volume" class="legenda-volume"></p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script>
+
+function inicializarDashboard() {
+    try {
+        if (typeof validarSessao === "function") {
+            validarSessao();
+        }
+    } catch (erroSessao) {
+        console.log("Aviso na validação de sessão: ", erroSessao);
+    }
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    if (idUsuario == undefined) {
+        console.log("ID do usuário não encontrado no sessionStorage. Usando ID provisório 1 para testes.");
+        idUsuario = 1;
+    }
+
+    fetch(`/quiz/buscar/${idUsuario}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            if (resposta.status == 204) {
+                console.log("Nenhum dado retornado do banco (Status 204).");
+                return;
+            }
+
+            resposta.json().then(function (dados) {
+                console.log("Dados reais recebidos com sucesso: ", dados);
+                calcularMetricas(dados);
+            });
+        } else {
+            console.error("Erro: Resposta do servidor não está OK.");
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro de rede ao buscar dados do banco:", erro);
+    });
+}
+
+function calcularMetricas(listaRespostas) {
+    var somaEsforco = 0;
+    var totalTreinosAvaliados = 0;
+    var minutosConvertidos = 0;
+    var diasDeTreino = 0;
+    
+    var condicaoSaude = "Não respondido";
+    var focoPrincipal = "Não respondido";
+    var sucessoMes = "Não respondido";
+
+    for (var i = 0; i < listaRespostas.length; i++) {
+        var registroAtual = listaRespostas[i];
+
+        if (registroAtual.fk_pergunta == 1) {
+            condicaoSaude = registroAtual.opcoes_alternativa;
+        }
+
+        if (registroAtual.fk_pergunta == 3) {
+            focoPrincipal = registroAtual.opcoes_alternativa;
+        }
+
+        if (registroAtual.fk_pergunta == 10) {
+            sucessoMes = registroAtual.opcoes_alternativa;
+        }
+
+        if (registroAtual.fk_pergunta == 4) {
+            somaEsforco += Number(registroAtual.opcoes_alternativa);
+            totalTreinosAvaliados++;
+        }
+
+        if (registroAtual.fk_pergunta == 2) {
+            var textoTempo = registroAtual.opcoes_alternativa;
+            if (textoTempo == "Menos de 10 min") { minutosConvertidos = 8; } 
+            else if (textoTempo == "De 10 a 20 min") { minutosConvertidos = 15; } 
+            else if (textoTempo == "De 20 a 40 min") { minutosConvertidos = 30; } 
+            else if (textoTempo == "Mais de 40 min") { minutosConvertidos = 45; }
+        }
+
+        if (registroAtual.fk_pergunta == 6) {
+            diasDeTreino = parseInt(registroAtual.opcoes_alternativa);
+        }
+    }
+
+    var mediaCansaco = totalTreinosAvaliados > 0 ? (somaEsforco / totalTreinosAvaliados) : 0;
+    var elementoAlerta = document.getElementById("p_alerta_esforco");
+    
+    if (mediaCansaco > 4) {
+        elementoAlerta.innerHTML = "Atenção: Ritmo muito intenso! Avalie com seu instruutor.";
+        elementoAlerta.classList.add("alerta-perigo");
+    } else {
+        elementoAlerta.innerHTML = "Seu índice de esforço está em uma zona segura e saudável.";
+        elementoAlerta.classList.remove("alerta-perigo");
+    }
+
+    var ctxEsforco = document.getElementById('graficoEsforco').getContext('2d');
+    new Chart(ctxEsforco, {
+        type: 'bar',
+        data: {
+            labels: ['Seu Esforço Médio', 'Limite Recomendado'],
+            datasets: [{
+                data: [mediaCansaco.toFixed(1), 4.0],
+                backgroundColor: ['#a3f452', '#444444'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        title: function(context) { return context[0].label; },
+                        label: function(context) { return ` Nota: ${context.raw}`; }
+                    }
+                }
+            },
+            scales: {
+                y: { beginAtZero: true, max: 5, grid: { color: '#333333' }, ticks: { color: '#ffffff' } },
+                x: { ticks: { color: '#ffffff' } }
+            }
+        }
+    });
+
+    if (minutosConvertidos > 0 && diasDeTreino > 0) {
+        var volumeSemanalMinutos = minutosConvertidos * diasDeTreino;
+        var metaRecomendadaOMS = 150; 
+        var restanteParaMeta = Math.max(0, metaRecomendadaOMS - volumeSemanalMinutos);
+
+        document.getElementById("p_legenda_volume").innerHTML = `Você planejou ${volumeSemanalMinutos} minutos de treino esta semana.`;
+
+        // Atribuição direta dos textos reais vindo do banco nas KPIs
+        document.getElementById("kpi_saude").innerHTML = condicaoSaude;
+        document.getElementById("kpi_foco").innerHTML = focoPrincipal;
+        document.getElementById("kpi_sucesso").innerHTML = sucessoMes;
+
+        var ctxVolume = document.getElementById('graficoVolume').getContext('2d');
+        new Chart(ctxVolume, {
+            type: 'doughnut',
+            data: {
+                labels: ['Minutos Programados', 'Faltam para Meta Ideal'],
+                datasets: [{
+                    data: [volumeSemanalMinutos, restanteParaMeta],
+                    backgroundColor: ['#a3f452', '#444444'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: '#ffffff' } } }
+            }
+        });
+    } else {
+        document.getElementById("p_legenda_volume").innerHTML = "Responda o quiz por completo para ver os dados.";
+    }
+}
+</script>
+
+</html>

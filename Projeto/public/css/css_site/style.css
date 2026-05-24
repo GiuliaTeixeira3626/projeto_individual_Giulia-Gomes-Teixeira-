@@ -153,6 +153,57 @@ body {
     transform: scale(1.05);
 }
 
+.acesso-section {
+    width: 100%;
+    margin-bottom: 50px; 
+    scroll-margin-top: 150px;
+}
+
+.acesso-text {
+    text-align: center;
+    margin-top: 50px; 
+    margin-bottom: 35px; 
+    padding: 0 20px;
+}
+
+.acesso-text h2 {
+    font-size: 24px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.acesso-text h2 span {
+    color: #a3f452; 
+}
+
+.acesso-text p.acesso3 {
+    font-size: 16px;
+    color: #b0b0b0;    
+    line-height: 1.6; 
+    max-width: 650px;  
+    margin: 0 auto;    
+}
+
+.acesso-site {
+    max-width: 1200px; /* Limita o tamanho da foto para alinhar com o resto do seu site */
+    width: 100%;
+    margin: 0 auto;    /* O SEGREDO: Centraliza o bloco da imagem na tela */
+    padding: 0 20px;   /* Proteção para a imagem não colar nos cantos em telas de celular */
+}
+
+.acesso-site img {
+    width: 100%; 
+    height: 400px; 
+    object-fit: cover; 
+    object-position: center; 
+    display: block;
+    filter: grayscale(100%); 
+    
+    /* BORDAS ARREDONDADAS: */
+    border-radius: 15px; /* Deixa as bordas arredondadas igual aos seus .card */
+}
+
 /* Cards */
 .sobre {
     padding: 80px 0;
@@ -214,6 +265,7 @@ h2 span {
 
 .descricao-comunidade {
     text-align: center;
+    color: #b0b0b0
 }
 
 .comunidade {

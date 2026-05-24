@@ -24,6 +24,31 @@ function salvarRespostas(req, res) {
         });
 }
 
+
+function buscarRespostasUsuario(req, res) {
+    
+    var idUsuario = req.params.idUsuario;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("O ID do usuário não está definido");
+    } else {
+    
+        quizModel.buscarRespostasUsuario(idUsuario)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado para este usuário.");
+            }
+        })
+        .catch(function (erro) {
+            console.log("\nHouve um erro ao buscar as respostas do usuário: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+}
+
 module.exports = {
-    salvarRespostas
+    salvarRespostas,
+    buscarRespostasUsuario
 };

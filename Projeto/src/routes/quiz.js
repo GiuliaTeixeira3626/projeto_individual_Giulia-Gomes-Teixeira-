@@ -7,4 +7,8 @@ router.post("/salvarRespostas", function(req, res) {
     quizController.salvarRespostas(req, res);
 });
 
+router.get("/buscar/:idUsuario", function (req, res) {
+    quizController.buscarRespostasUsuario(req, res);
+});
+
 module.exports = router;

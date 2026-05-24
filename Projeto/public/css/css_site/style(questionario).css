@@ -20,17 +20,13 @@ body {
 .header-content {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    position: relative;
     height: 60px;
-}
-
-.header-content nav {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .logo {
@@ -103,7 +99,7 @@ nav ul li a:hover {
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 14px;
     text-align: center;
     transition: 0.3s ease;
 }
