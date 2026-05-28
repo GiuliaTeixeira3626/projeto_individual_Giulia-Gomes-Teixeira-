@@ -50,13 +50,13 @@ body {
 
 .logo-text strong {
     display: block;
-    font-size: 1.1rem;
+    font-size: 16px;
     line-height: 1;
 }
 
 .logo-text span {
     color: #a3f452;
-    font-size: 0.75rem;
+    font-size: 12px;
 }
 
 nav {
@@ -77,7 +77,7 @@ nav ul li a {
     text-decoration: none;
     color: #ffffff;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 15px;
     transition: 0.3s;
 }
 
@@ -121,13 +121,13 @@ nav ul li a:hover {
 }
 
 .stat-card h3 {
-    font-size: 1rem;
+    font-size: 16px;
     color: white;
     margin-bottom: 10px;
 }
 
 .stat-card p {
-    font-size: 0.8rem;
+    font-size: 14px;
     color: #9ca3af;
 }
 
@@ -179,7 +179,7 @@ nav ul li a:hover {
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 16px;
     transition: 0.3s;
 }
 
@@ -196,7 +196,7 @@ nav ul li a:hover {
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 16px;
     transition: 0.3s;
 }
 
@@ -214,11 +214,11 @@ nav ul li a:hover {
 
 .detalhes label {
     color: var(--text-gray);
-    font-size: 0.85rem;
+    font-size: 14px;
 }
 
 .detalhes p {
-    font-size: 1.1rem;
+    font-size: 15px;
     font-weight: 500;
     margin-top: 5px;
 }
