@@ -395,24 +395,14 @@ section {
     scroll-behavior: smooth; 
 }
 
-.frase-original {
+footer {
     font-family: 'Inter', sans-serif;
     text-align: center;
     margin-bottom: 30px;
-    display: block;
-    margin-top: 30px;    
+    margin-top: -40px;
+    display: block;    
     margin-bottom: 15px;  
     color: white;          
-    font-size: 15.2px;
+    font-size: 13px;
 }
 
-.frase-final {
-    font-family: 'Inter', sans-serif;
-    text-align: center;
-    margin-bottom: 30px;
-    display: block;
-    margin-top: 30px;    
-    margin-bottom: 15px;  
-    color: #b0b0b0;          
-    font-size: 13.6px;
-}
