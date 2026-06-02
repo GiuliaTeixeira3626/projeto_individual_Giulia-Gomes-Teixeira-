@@ -31,6 +31,7 @@
                     <li><a href="index.html#fale-conosco">Contato</a></li>
                 </ul>
             </nav>
+        </div>
     </header>
 
     <main class="container">
@@ -47,24 +48,26 @@
                 <p>Membro desde</p>
                 <span class="green" id="b_data">DD/MM/YYYY</span>
             </div>
+            
             <div class="card stat-card">
                 <h3>Atividades</h3>
                 <p>Treinos realizados</p>
-                <span class="green"> 0 sessões</span>
+                <span class="green"><span id="qtd_sessoes">0</span> sessões</span>
+                <a class="btn-clicar" onclick="adicionarAtividade()">Cadastrar Atividade</a>
             </div>
+            
             <div class="card stat-card">
                 <h3>Conquistas</h3>
                 <p>Medalhas</p>
-                <span class="green"> 0 conquistas</span>
+                <span class="green"><span id="qtd_conquistas">0</span> conquistas</span>
+                <a class="btn-clicar" onclick="adicionarConquista()">Cadastrar Conquista</a>
             </div>
-
         </div>
 
         <section class="card questionario-card">
             <div class="questionario-info">
                 <h2>Questionário de Avaliação Inicial</h2>
-                <p>Complete o questionário para que possamos criar um plano de treino personalizado e adaptado às suas
-                    necessidades.</p>
+                <p>Complete o questionário para que possamos criar um plano de treino personalizado e adaptado às suas necessidades.</p>
             </div>
             <a href="index(quiz).html" class="btn-iniciar">Iniciar Questionário</a>
         </section>
@@ -78,6 +81,20 @@
         </section>
     </main>
 
+    <script>
+        let contadorAtividades = 0;
+        let contadorConquistas = 0;
+
+        function adicionarAtividade() {
+            contadorAtividades++;
+            document.getElementById('qtd_sessoes').innerHTML = contadorAtividades;
+        }
+
+        function adicionarConquista() {
+            contadorConquistas++;
+            document.getElementById('qtd_conquistas').innerHTML = contadorConquistas;
+        }
+    </script>
 </body>
 
 </html>
